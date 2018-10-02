@@ -6,6 +6,9 @@ using System.IO;
 using Discord;
 using Discord.WebSocket;
 using Discord.Commands;
+using Newtonsoft.Json;
+using DiscordBot.Resources.Datatypes;
+using System.Linq;
 
 namespace DiscordBot
 {
@@ -21,9 +24,20 @@ namespace DiscordBot
 
 		private async Task MainAsync()
 		{
+			string JSON = "";
+			string path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace(@"bin\Debug\netcoreapp2.0", @"\Data\Settings.json").Replace("DiscordBot.dll", ""));
+			using (var Stream = new FileStream(path, FileMode.Open, FileAccess.Read))
+			using (var ReadSettings = new StreamReader(Stream))
+			{
+				JSON = ReadSettings.ReadToEnd();
+			}
+			Setting settings = JsonConvert.DeserializeObject<Setting>(JSON);
+			ISetting.Settings = settings;
+
+
 			client = new DiscordSocketClient(new DiscordSocketConfig
 			{
-				LogLevel = LogSeverity.Debug
+				LogLevel = LogSeverity.Info
 			});
 
 			commands = new CommandService(new CommandServiceConfig
@@ -40,13 +54,7 @@ namespace DiscordBot
 			client.Ready += ClientReady;
 			client.Log += ClientLog;
 
-			string Token = "";
-			using (var Stream = new FileStream((Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)).Replace(@"bin\Debug\netcoreapp2.0", @"Data\Token.txt"), FileMode.Open, FileAccess.Read))
-			using (var ReadToken = new StreamReader(Stream))
-			{
-				Token = ReadToken.ReadToEnd();
-			}
-			await client.LoginAsync(TokenType.Bot, Token);
+			await client.LoginAsync(TokenType.Bot, ISetting.Settings.Token);
 			await client.StartAsync();
 
 			await Task.Delay(-1);
@@ -55,6 +63,13 @@ namespace DiscordBot
 		private async Task ClientLog(LogMessage message)
 		{
 			Console.WriteLine($"[{DateTime.Now} at {message.Source}] {message.Message}");
+			try
+			{
+				SocketGuild guild = client.Guilds.Where(x => x.Id == ISetting.Settings.Log[0]).FirstOrDefault();
+				SocketTextChannel channel = guild.Channels.Where(x => x.Id == ISetting.Settings.Log[1]).FirstOrDefault() as SocketTextChannel;
+				await channel.SendMessageAsync($"[{DateTime.Now} at {message.Source}] {message.Message}");
+			}
+			catch { }
 		}
 
 		private async Task ClientReady()

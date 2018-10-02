@@ -8,7 +8,7 @@ using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 
-namespace DiscordBot.Core.Commands
+namespace DiscordBot.Core.Moderation
 {
 	public class Backdoor : ModuleBase<SocketCommandContext>
 	{
