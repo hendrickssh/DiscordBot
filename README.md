@@ -11,3 +11,8 @@ The goal is to include the followint features:
   - Music Streaming
     - Play from YouTube
   - Soundboard
+  
+## Setup
+- Clone the repo to desktop
+- Update .../Data/Appsettings.json to proper information
+- Run program and test
