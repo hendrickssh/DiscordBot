@@ -21,7 +21,7 @@ namespace DiscordBot.Core.Moderation
 				return;
 			}
 
-			string path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace(@"bin\Debug\netcoreapp2.0", @"\Data\Settings.json").Replace("DiscordBot.dll", ""));
+			string path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location.Replace(@"bin\Debug\netcoreapp2.0", @"\Data\Appsettings.json").Replace("DiscordBot.dll", ""));
 			if(!File.Exists(path))
 			{
 				await Context.Channel.SendMessageAsync(":x: The file is not found");
