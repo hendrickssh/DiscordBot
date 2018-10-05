@@ -331,3 +331,4 @@ ASALocalRun/
 .mfractor/
 DiscordBot/DiscordBot/Data/Appsettings.json
 *.json
+*.sqlite
