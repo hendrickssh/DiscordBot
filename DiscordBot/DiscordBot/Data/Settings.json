@@ -1,0 +1,7 @@
+{
+    "Token": "Bots Token",
+    "Owner": Owner ID,
+    "Log": [Guild Id, Channel Id],
+    "Banned": [UserId, UserID...],
+    "Currency": "Currency Name"
+}
