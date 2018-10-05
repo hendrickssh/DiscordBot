@@ -1,8 +1,7 @@
-﻿{
-   "Token": "NDk2NDU1Njk3NTAwNzMzNDU2.DpQ71A.ocbm8goS7jv4Tdyh8L2IMOiSMm0",
-   "Owner": 166031587035709441,
-   "Log": [ 496456069057609748, 496718762561503233 ],
-   "Version": "1.0.0.0",
-   "Banned": [],
-   "Currency": "Doge Dollars"
+{
+    "Token": "Bots Token",
+    "Owner": Owner ID,
+    "Log": [Guild Id, Channel Id],
+    "Banned": [UserId, UserID...],
+    "Currency": "Currency Name"
 }
