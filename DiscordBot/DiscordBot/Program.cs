@@ -86,7 +86,7 @@ namespace DiscordBot
 			if (Context.User.IsBot) return;
 
 			int argPos = 0;
-			if (!(Message.HasStringPrefix("a!", ref argPos) || Message.HasMentionPrefix(client.CurrentUser, ref argPos))) return;
+			if (!(Message.HasStringPrefix("!", ref argPos) || Message.HasMentionPrefix(client.CurrentUser, ref argPos))) return;
 
 			var Result = await commands.ExecuteAsync(Context, argPos);
 			if (!Result.IsSuccess)
