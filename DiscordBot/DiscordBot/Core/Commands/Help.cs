@@ -16,7 +16,7 @@ namespace DiscordBot.Core.Commands
 			EmbedBuilder embed = new EmbedBuilder();
 			embed.WithAuthor("Welcome, I'm here to help", Context.Guild.IconUrl);
 			embed.WithFooter($"Thanks for gaming with us!");
-			embed.WithDescription($@"Welcom to {Context.Guild.Name}!
+			embed.WithDescription($@"Welcome to {Context.Guild.Name}!
 											Here's how things work around here:
 											a! is the keyword to trigger a command, use it before any other command!
 											speak, say, reapeat will have me say everything after
